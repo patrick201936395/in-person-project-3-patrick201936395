@@ -1,67 +1,96 @@
-// Week 4 JavaScript Portfolio Project - Data Organization
-// Students will learn to organize their portfolio data using JavaScript objects and arrays
+const showOnly = "all";
 
-// TODO: Fill in your personal information
 const portfolio = {
-    // Personal information object
     owner: {
-        name: "Your Name Here",        // TODO: Add your name
-        title: "Your Title Here",      // TODO: Add your professional title
-        email: "your.email@example.com", // TODO: Add your email
-        location: "Your City, State",  // TODO: Add your location
-        bio: "Write a brief description about yourself here. What are you passionate about? What are your goals?" // TODO: Add your bio
+        name: "Patrick Ruan",
+        title: "Student at UC Berkeley School of Information",
+        email: "patrick.ruan@berkeley.edu",
+        location: "Berkeley, CA",
+        bio: "Hi, I'm Patrick. I'm a student at the UC Berkeley School of Information. Outside of class, I enjoy building small side projects, exploring new tools, and learning about product design and user experience."
     },
-    
-    // Skills as an array
+
     skills: [
-        "Add your first skill here",   // TODO: Replace with your actual skills
-        "Add your second skill here",  // TODO: Add more skills
-        "Add your third skill here"    // TODO: Students should have at least 5 skills
-        // TODO: Add more skills - aim for 5-7 skills total
+        "HTML5 & Semantic Markup",
+        "CSS3 & Responsive Design",
+        "JavaScript Fundamentals",
+        "Python & Data Analysis",
+        "Git & GitHub"
     ],
-    
-    // Projects as array of objects
+
     projects: [
         {
-            title: "Your First Project",
-            description: "Describe what this project does and why it's interesting",
-            technologies: ["HTML", "CSS"], // Array of technologies used
-            completionDate: "2025-08-15",   // When you completed it
-            featured: true                   // Is this a featured project?
+            title: "Personal Portfolio",
+            description: "A responsive portfolio site built with semantic HTML, Flexbox, and CSS Grid.",
+            technologies: ["HTML", "CSS", "Flexbox", "Grid"],
+            completionDate: "2025-09-15",
+            featured: true
         },
         {
-            title: "Your Second Project", 
-            description: "Another project description here",
-            technologies: ["HTML", "CSS", "JavaScript"],
-            completionDate: "2025-09-01",
+            title: "Data Explorer",
+            description: "A Python notebook project analyzing public datasets with pandas.",
+            technologies: ["Python", "pandas"],
+            completionDate: "2025-06-01",
+            featured: false
+        },
+        {
+            title: "Contact Form",
+            description: "An accessible contact form with labeled inputs and validation.",
+            technologies: ["HTML", "Forms"],
+            completionDate: "2025-03-01",
+            featured: false
+        },
+        {
+            title: "UX Case Study",
+            description: "A design exploration focused on product usability and user research.",
+            technologies: ["UX", "Design"],
+            completionDate: "2024-12-01",
             featured: false
         }
-        // TODO: Add more projects during class
     ],
-    
-    // Contact and availability information
+
     availability: {
-        freelance: false,    // TODO: Set to true if available for freelance work
-        fullTime: false,     // TODO: Set to true if seeking full-time position
-        partTime: true       // TODO: Set to true if available for part-time work
+        freelance: false,
+        fullTime: false,
+        partTime: true
     }
 };
 
-// Let's explore our data structure in the console
 console.log("=== PORTFOLIO DATA EXPLORER ===");
 console.log("Full portfolio object:", portfolio);
 
-// TODO: During class, we'll add more console.log() statements to explore the data
-// Examples students will try:
-// console.log("Owner name:", portfolio.owner.name);
-// console.log("First skill:", portfolio.skills[0]);
-// console.log("Number of projects:", portfolio.projects.length);
+console.log("My name:", portfolio.owner.name);
+console.log("Total skills:", portfolio.skills.length);
+console.log("First skill:", portfolio.skills[0]);
+console.log("First project:", portfolio.projects[0]);
 
-// TODO: Students will learn to access nested properties
-// console.log("Email:", portfolio.owner.email);
-// console.log("Second project:", portfolio.projects[1]);
-// console.log("Available for freelance?", portfolio.availability.freelance);
+console.log("Email:", portfolio.owner.email);
+console.log("Second project:", portfolio.projects[1]);
+console.log("Available for freelance?", portfolio.availability.freelance);
 
-// TODO: Students will create summary strings using template literals
-// let summary = `${portfolio.owner.name} is a ${portfolio.owner.title} with ${portfolio.skills.length} skills.`;
-// console.log("Summary:", summary);
+let summary = `${portfolio.owner.name} is a ${portfolio.owner.title} with ${portfolio.skills.length} skills.`;
+console.log("Summary:", summary);
+
+console.log("Portfolio Summary:");
+console.log(`${portfolio.owner.name} has ${portfolio.skills.length} skills`);
+console.log(`and ${portfolio.projects.length} projects`);
+
+for (let i = 0; i < portfolio.projects.length; i++) {
+    if (portfolio.projects[i].featured === true) {
+        console.log("⭐ Featured:", portfolio.projects[i].title);
+    }
+}
+
+let latestTitle = portfolio.projects[0].title;
+let latestDate = portfolio.projects[0].completionDate;
+
+for (let i = 1; i < portfolio.projects.length; i++) {
+    if (portfolio.projects[i].completionDate > latestDate) {
+        latestTitle = portfolio.projects[i].title;
+        latestDate = portfolio.projects[i].completionDate;
+    }
+}
+
+console.log("Most recent project: " + latestTitle);
+
+let dataAsJSON = JSON.stringify(portfolio, null, 2);
+console.log("Portfolio as JSON:", dataAsJSON);
